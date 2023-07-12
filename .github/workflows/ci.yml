@@ -1,0 +1,21 @@
+on:
+  pull_request:
+    branches: [main]
+jobs:
+  check:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+      - name: schema check
+        env:
+          HIVE_TOKEN: ${{ secrets.HIVE_TOKEN }}
+          HIVE_ENDPOINT: ${{ secrets.HIVE_ENDPOINT }}
+        run: |
+          curl -sSL https://graphql-hive.com/install.sh | sh
+          hive schema:check "schema.graphql" \
+            --registry.endpoint ${{ env.HIVE_ENDPOINT }} \
+            --registry.accessToken ${{ env.HIVE_TOKEN }} \
+            --github
