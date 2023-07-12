@@ -14,4 +14,4 @@ jobs:
           HIVE_TOKEN: ${{ env.HIVE_TOKEN }}
         run: |
           curl -sSL https://graphql-hive.com/install.sh | sh
-          hive schema:check "schema.graphql" --github
+          hive schema:check "schema.graphql" --registry.accessToken ${{ env.HIVE_TOKEN }} --github
