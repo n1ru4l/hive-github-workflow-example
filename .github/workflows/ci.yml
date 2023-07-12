@@ -15,7 +15,7 @@ jobs:
           HIVE_ENDPOINT: ${{ secrets.HIVE_ENDPOINT }}
         run: |
           curl -sSL https://graphql-hive.com/install.sh | sh
-          hive schema:publish "schema.graphql" \
+          hive schema:check "schema.graphql" \
             --registry.endpoint ${{ env.HIVE_ENDPOINT }} \
             --registry.accessToken ${{ env.HIVE_TOKEN }} \
             --github

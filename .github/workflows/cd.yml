@@ -9,13 +9,13 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 2
-      - name: schema check
+      - name: schema publish
         env:
           HIVE_TOKEN: ${{ secrets.HIVE_TOKEN }}
           HIVE_ENDPOINT: ${{ secrets.HIVE_ENDPOINT }}
         run: |
           curl -sSL https://graphql-hive.com/install.sh | sh
-          hive schema:check "schema.graphql" \
+          hive schema:publish "schema.graphql" \
             --registry.endpoint ${{ env.HIVE_ENDPOINT }} \
             --registry.accessToken ${{ env.HIVE_TOKEN }} \
             --github
