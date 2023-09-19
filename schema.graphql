@@ -1,4 +1,9 @@
 type Query {
-  foo: String!
-  newField: Float!
+  foo: Int!
+  newField: String!
+  a: User
+}
+
+type User {
+  id: ID!
 }
